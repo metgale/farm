@@ -1,2 +1,3 @@
 Requires cron job working:
-* * * * * wget http://yet-to-be.com/tasks/run
+
+    * * * * * wget http://yet-to-be.com/tasks/run
