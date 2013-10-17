@@ -4,13 +4,9 @@
 			<fieldset>
 				<legend><?php echo __('Add %s', __('User')); ?></legend>
 				<?php
-				echo $this->BootstrapForm->input('name', array(
-					'required' => 'required',
-					'helpInline' => '<span class="label label-important">' . __('Required') . '</span>&nbsp;')
-				);
-				echo $this->BootstrapForm->input('admin', array(
-					'required' => false)
-				);
+				echo $this->BootstrapForm->input('name', array('required' => 'required'));
+				echo $this->BootstrapForm->input('email', array('required' => 'required'));
+				echo $this->BootstrapForm->input('admin', array('required' => false));
 				?>
 				<?php echo $this->BootstrapForm->submit(__('Submit'));?>
 			</fieldset>
