@@ -52,9 +52,6 @@ class AppController extends Controller {
 		'Paginator' => array('className' => 'TwitterBootstrap.BootstrapPaginator'),
 	);
 	
-	public function beforeFilter() {
-		parent::beforeFilter();
-		$this->Auth->allow();
-	}
+	
 
 }

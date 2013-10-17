@@ -45,6 +45,8 @@ class UsersController extends AppController {
 	public function index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
+		debug($this->Auth->user('id'));
+		
 	}
 
 	public function login() {
