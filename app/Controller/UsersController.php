@@ -1,5 +1,7 @@
 <?php
+
 App::uses('AppController', 'Controller');
+
 /**
  * Users Controller
  *
@@ -8,41 +10,72 @@ App::uses('AppController', 'Controller');
  */
 class UsersController extends AppController {
 
-/**
- *  Layout
- *
- * @var string
- */
+	/**
+	 *  Layout
+	 *
+	 * @var string
+	 */
 	public $layout = 'bootstrap';
 
-/**
- * Helpers
- *
- * @var array
- */
+	/**
+	 * Helpers
+	 *
+	 * @var array
+	 */
 	public $helpers = array('TwitterBootstrap.BootstrapHtml', 'TwitterBootstrap.BootstrapForm', 'TwitterBootstrap.BootstrapPaginator');
-/**
- * Components
- *
- * @var array
- */
+
+	/**
+	 * Components
+	 *
+	 * @var array
+	 */
 	public $components = array('Paginator');
-/**
- * index method
- *
- * @return void
- */
+
+	/**
+	 * index method
+	 *
+	 * @return void
+	 */
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow('add');
+	}
+
+	
 	public function index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
 	}
 
-/**
- * view method
- *
- * @param string $id
- * @return void
- */
+	public function login() {
+		if ($this->request->is('post')) {
+			if ($this->Auth->login()) {
+				$this->Session->setFlash(
+						('Prijava uspješna'), 'alert', array(
+					'plugin' => 'TwitterBootstrap',
+					'class' => 'alert-success'
+						)
+				);
+				return $this->redirect(array(
+							'controller' => 'users',
+							'action' => 'index'
+				));
+			} else {
+				$this->Session->setFlash('Username or password is incorrect', 'default', array(), 'auth');
+			}
+		}
+	}
+
+	public function logout() {
+		$this->redirect($this->Auth->logout());
+	}
+
+	/**
+	 * view method
+	 *
+	 * @param string $id
+	 * @return void
+	 */
 	public function view($id = null) {
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
@@ -51,43 +84,39 @@ class UsersController extends AppController {
 		$this->set('user', $this->User->read(null, $id));
 	}
 
-/**
- * add method
- *
- * @return void
- */
+	/**
+	 * add method
+	 *
+	 * @return void
+	 */
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(
-					__('The %s has been saved', __('user')),
-					'alert',
-					array(
-						'plugin' => 'TwitterBootstrap',
-						'class' => 'alert-success'
-					)
+						__('The %s has been saved', __('user')), 'alert', array(
+					'plugin' => 'TwitterBootstrap',
+					'class' => 'alert-success'
+						)
 				);
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(
-					__('The %s could not be saved. Please, try again.', __('user')),
-					'alert',
-					array(
-						'plugin' => 'TwitterBootstrap',
-						'class' => 'alert-error'
-					)
+						__('The %s could not be saved. Please, try again.', __('user')), 'alert', array(
+					'plugin' => 'TwitterBootstrap',
+					'class' => 'alert-error'
+						)
 				);
 			}
 		}
 	}
 
-/**
- * edit method
- *
- * @param string $id
- * @return void
- */
+	/**
+	 * edit method
+	 *
+	 * @param string $id
+	 * @return void
+	 */
 	public function edit($id = null) {
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
@@ -96,22 +125,18 @@ class UsersController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(
-					__('The %s has been saved', __('user')),
-					'alert',
-					array(
-						'plugin' => 'TwitterBootstrap',
-						'class' => 'alert-success'
-					)
+						__('The %s has been saved', __('user')), 'alert', array(
+					'plugin' => 'TwitterBootstrap',
+					'class' => 'alert-success'
+						)
 				);
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(
-					__('The %s could not be saved. Please, try again.', __('user')),
-					'alert',
-					array(
-						'plugin' => 'TwitterBootstrap',
-						'class' => 'alert-error'
-					)
+						__('The %s could not be saved. Please, try again.', __('user')), 'alert', array(
+					'plugin' => 'TwitterBootstrap',
+					'class' => 'alert-error'
+						)
 				);
 			}
 		} else {
@@ -119,12 +144,12 @@ class UsersController extends AppController {
 		}
 	}
 
-/**
- * delete method
- *
- * @param string $id
- * @return void
- */
+	/**
+	 * delete method
+	 *
+	 * @param string $id
+	 * @return void
+	 */
 	public function delete($id = null) {
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
@@ -135,22 +160,18 @@ class UsersController extends AppController {
 		}
 		if ($this->User->delete()) {
 			$this->Session->setFlash(
-				__('The %s deleted', __('user')),
-				'alert',
-				array(
-					'plugin' => 'TwitterBootstrap',
-					'class' => 'alert-success'
-				)
+					__('The %s deleted', __('user')), 'alert', array(
+				'plugin' => 'TwitterBootstrap',
+				'class' => 'alert-success'
+					)
 			);
 			$this->redirect(array('action' => 'index'));
 		}
 		$this->Session->setFlash(
-			__('The %s was not deleted', __('user')),
-			'alert',
-			array(
-				'plugin' => 'TwitterBootstrap',
-				'class' => 'alert-error'
-			)
+				__('The %s was not deleted', __('user')), 'alert', array(
+			'plugin' => 'TwitterBootstrap',
+			'class' => 'alert-error'
+				)
 		);
 		$this->redirect(array('action' => 'index'));
 	}

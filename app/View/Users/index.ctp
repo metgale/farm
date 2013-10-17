@@ -9,7 +9,7 @@
 		<table class="table">
 			<tr>
 				<th><?php echo $this->BootstrapPaginator->sort('id');?></th>
-				<th><?php echo $this->BootstrapPaginator->sort('name');?></th>
+				<th><?php echo $this->BootstrapPaginator->sort('username');?></th>
 				<th><?php echo $this->BootstrapPaginator->sort('admin');?></th>
 				<th><?php echo $this->BootstrapPaginator->sort('created');?></th>
 				<th><?php echo $this->BootstrapPaginator->sort('modified');?></th>
@@ -18,7 +18,7 @@
 		<?php foreach ($users as $user): ?>
 			<tr>
 				<td><?php echo h($user['User']['id']); ?>&nbsp;</td>
-				<td><?php echo h($user['User']['name']); ?>&nbsp;</td>
+				<td><?php echo h($user['User']['username']); ?>&nbsp;</td>
 				<td><?php echo h($user['User']['admin']); ?>&nbsp;</td>
 				<td><?php echo h($user['User']['created']); ?>&nbsp;</td>
 				<td><?php echo h($user['User']['modified']); ?>&nbsp;</td>

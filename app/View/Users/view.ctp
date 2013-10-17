@@ -9,7 +9,7 @@
 			</dd>
 			<dt><?php echo __('Name'); ?></dt>
 			<dd>
-				<?php echo h($user['User']['name']); ?>
+				<?php echo h($user['User']['username']); ?>
 				&nbsp;
 			</dd>
 			<dt><?php echo __('Admin'); ?></dt>

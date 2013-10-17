@@ -36,15 +36,25 @@ class AppController extends Controller {
 
 	public $components = array(
 		'DebugKit.Toolbar',
-		'Session'		
+		'Session',
+		'Auth' => array(
+			'loginAction' => array(
+				'controller' => 'users',
+				'action' => 'login'
+			),
+			'authError' => 'Please login',
+			'authenticate' => 'form')
 	);
 	
-
-	
 	public $helpers = array(
-        'Html' => array('className' => 'TwitterBootstrap.BootstrapHtml'),
-        'Form' => array('className' => 'TwitterBootstrap.BootstrapForm'),
-        'Paginator' => array('className' => 'TwitterBootstrap.BootstrapPaginator'),
-    );
+		'Html' => array('className' => 'TwitterBootstrap.BootstrapHtml'),
+		'Form' => array('className' => 'TwitterBootstrap.BootstrapForm'),
+		'Paginator' => array('className' => 'TwitterBootstrap.BootstrapPaginator'),
+	);
+	
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow();
+	}
 
 }

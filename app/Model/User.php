@@ -25,7 +25,6 @@ class User extends AppModel {
 	public $validate = array(
 		'admin' => array('required' => false));
 	
-	
 	public $hasMany = array(
 		'Task' => array(
 			'className' => 'Task',
@@ -33,5 +32,12 @@ class User extends AppModel {
 			'dependent' => false
 		)
 	);
+
+	public function beforeSave($options = array()) {
+		if (isset($this->data['User']['password'])) {
+			$this->data['User']['password'] = AuthComponent::password($this->data['User']['password']);
+		}
+		return true;
+	}
 
 }

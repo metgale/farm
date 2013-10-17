@@ -4,8 +4,9 @@
 			<fieldset>
 				<legend><?php echo __('Add %s', __('User')); ?></legend>
 				<?php
-				echo $this->BootstrapForm->input('name', array('required' => 'required'));
+				echo $this->BootstrapForm->input('username', array('required' => 'required'));
 				echo $this->BootstrapForm->input('email', array('required' => 'required'));
+				echo $this->BootstrapForm->input('password', array('required' => 'required'));
 				echo $this->BootstrapForm->input('admin', array('required' => false));
 				?>
 				<?php echo $this->BootstrapForm->submit(__('Submit'));?>

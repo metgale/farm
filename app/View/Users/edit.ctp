@@ -4,7 +4,7 @@
 			<fieldset>
 				<legend><?php echo __('Edit %s', __('User')); ?></legend>
 				<?php
-				echo $this->BootstrapForm->input('name', array(
+				echo $this->BootstrapForm->input('username', array(
 					'required' => 'required',
 					'helpInline' => '<span class="label label-important">' . __('Required') . '</span>&nbsp;')
 				);

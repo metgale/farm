@@ -22,7 +22,7 @@
 			<tr>
 				<td><?php echo h($task['Task']['id']); ?>&nbsp;</td>
 				<td>
-					<?php echo $this->Html->link($task['User']['name'], array('controller' => 'users', 'action' => 'view', $task['User']['id'])); ?>
+					<?php echo $this->Html->link($task['User']['username'], array('controller' => 'users', 'action' => 'view', $task['User']['id'])); ?>
 				</td>
 				<td><?php echo h($task['Task']['title']); ?>&nbsp;</td>
 				<td><?php echo h($task['Task']['completed']); ?>&nbsp;</td>
