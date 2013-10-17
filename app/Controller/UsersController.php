@@ -36,17 +36,14 @@ class UsersController extends AppController {
 	 *
 	 * @return void
 	 */
-	public function beforeFilter() {
-		parent::beforeFilter();
-		$this->Auth->allow('add');
-	}
-
-	
 	public function index() {
-		$this->User->recursive = 0;
-		$this->set('users', $this->Paginator->paginate());
-		debug($this->Auth->user('id'));
-		
+		$this->paginate = array(
+			'User' => array(
+				'contain' => array('Task')
+			)
+		);
+		$users = $this->paginate();
+		$this->set('users', $users);
 	}
 
 	public function login() {
