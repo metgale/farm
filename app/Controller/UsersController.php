@@ -45,7 +45,11 @@ class UsersController extends AppController {
 		$users = $this->paginate();
 		$this->set('users', $users);
 	}
-
+		
+	public function home(){
+		//ADMIN UI
+	}
+	
 	public function login() {
 		if ($this->request->is('post')) {
 			if ($this->Auth->login()) {

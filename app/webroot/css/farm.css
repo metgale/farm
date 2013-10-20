@@ -1,0 +1,25 @@
+/* 
+    Document   : farm
+    Created on : 18.10.2013., 19:26:30
+    Author     : Gale
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.task-information{
+	display:none;
+}
+
+.home h2{
+	color: #888;
+}
+.home a{
+	float:left; display:inline; clear:left;
+}
+.home .row{
+	margin-left: 10px;
+}
