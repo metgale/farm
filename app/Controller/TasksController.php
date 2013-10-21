@@ -132,7 +132,8 @@ class TasksController extends AppController {
 		$tasks = $this->paginate = array(
 			'conditions' => array('Task.user_id' => $user['User']['id'])
 		);
-		$this->set('tasks', $this->paginate());
+		$this->set('tasks', $this->paginate()); 
+		$this->set('user', $user);
 	}
 
 	/**

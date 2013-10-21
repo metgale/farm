@@ -45,23 +45,29 @@ class UsersController extends AppController {
 		$users = $this->paginate();
 		$this->set('users', $users);
 	}
-		
-	public function home(){
-		//ADMIN UI
+
+	public function home() {
+		$options = array(
+			'limit' => 10,
+			'order' => 'Task.created DESC',
+			'contain' => 'User',
+			'conditions' => array(
+				'Task.completed' => 0));
+		$this->set('tasks', $this->User->Task->find('all', $options));
 	}
-	
+
 	public function login() {
 		if ($this->request->is('post')) {
 			if ($this->Auth->login()) {
 				$this->Session->setFlash(
-						('Prijava uspješna'), 'alert', array(
+						('Succesfull login'), 'alert', array(
 					'plugin' => 'TwitterBootstrap',
 					'class' => 'alert-success'
 						)
 				);
 				return $this->redirect(array(
 							'controller' => 'users',
-							'action' => 'index'
+							'action' => 'home'
 				));
 			} else {
 				$this->Session->setFlash('Username or password is incorrect', 'default', array(), 'auth');

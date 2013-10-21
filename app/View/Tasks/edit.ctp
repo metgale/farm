@@ -12,10 +12,7 @@
 				'required' => 'required',
 				'helpInline' => '<span class="label label-important">' . __('Required') . '</span>&nbsp;')
 			);
-			echo $this->BootstrapForm->input('completed', array(
-				'required' => 'required',
-				'helpInline' => '<span class="label label-important">' . __('Required') . '</span>&nbsp;')
-			);
+			echo $this->BootstrapForm->input('completed');
 			echo $this->BootstrapForm->input('information', array(
 				'required' => 'required',
 				'helpInline' => '<span class="label label-important">' . __('Required') . '</span>&nbsp;')
@@ -24,12 +21,15 @@
 				'required' => false)
 			);
 			echo $this->BootstrapForm->input('deadline', array(
+				'class' => 'input-small',
 				'required' => 'required',
 				'helpInline' => '<span class="label label-important">' . __('Required') . '</span>&nbsp;')
 			);
 			echo $this->BootstrapForm->hidden('id');
 			?>
-			<?php echo $this->BootstrapForm->submit(__('Submit')); ?>
+			<div class = "form-actions">
+				<button type = "submit" class = "btn btn-primary">Submit</button>
+			</div>
 		</fieldset>
 		<?php echo $this->BootstrapForm->end(); ?>
 	</div>
@@ -41,6 +41,7 @@
 				<li><?php echo $this->Html->link(__('List %s', __('Tasks')), array('action' => 'index')); ?></li>
 				<li><?php echo $this->Html->link(__('List %s', __('Users')), array('controller' => 'users', 'action' => 'index')); ?></li>
 				<li><?php echo $this->Html->link(__('New %s', __('User')), array('controller' => 'users', 'action' => 'add')); ?></li>
+				<li><h3><?php echo $this->Html->link('Logout', array('controller' => 'users', 'action' => 'logout')); ?></h3></li>
 			</ul>
 		</div>
 	</div>

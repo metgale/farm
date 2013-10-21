@@ -1,33 +1,25 @@
 $(document).ready(function() {
-	$('.task').on("click", function() {
-		$('.task-information', this).slideToggle();
+	$('.task-metadata').on("click", function() {
+		$('.task-information', this).slideToggle("slow");
 	});
+	$('.task-metadata').on("mouseover", function() {
+		$('.task-title', this).addClass("hover");
+	});
+	$('.task-metadata').on("mouseleave", function() {
+		$('.task-title', this).removeClass("hover");
+	});
+	
 	
 	$('.checkbox-submit').click(function(e) {
 		var frm = $(this).closest('form');
+		var task = $(this).closest('.task');
 		$.ajax({
-				type: frm.attr('method'),
-				url: frm.attr('action'),
-				data: frm.serialize(),
-				success: function(data) {
-					alert('ok');
-				}
-			});
-
-//		frm.submit(function(ev) {
-//			$.ajax({
-//				type: frm.attr('method'),
-//				url: frm.attr('action'),
-//				data: frm.serialize(),
-//				success: function(data) {
-//					alert('ok');
-//				}
-//			});
-//
-//			ev.preventDefault();
-//		});
+			type: frm.attr('method'),
+			url: frm.attr('action'),
+			data: frm.serialize(),
+			success: function(data) {
+				task.hide("slow");
+			}
+		});
 	});
-
-	
-
 })
