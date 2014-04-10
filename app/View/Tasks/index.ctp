@@ -12,7 +12,7 @@
 				<th><?php echo $this->BootstrapPaginator->sort('title'); ?></th>
 				<th><?php echo $this->BootstrapPaginator->sort('completed'); ?></th>
 				<th><?php echo $this->BootstrapPaginator->sort('daily'); ?></th>
-				<th><?php echo $this->BootstrapPaginator->sort('information'); ?></th>
+				<th width="40%"><?php echo $this->BootstrapPaginator->sort('information'); ?></th>
 				<th><?php echo $this->BootstrapPaginator->sort('deadline'); ?></th>
 				<th><?php echo $this->BootstrapPaginator->sort('created'); ?></th>
 				<th class="actions"><?php echo __('Actions'); ?></th>

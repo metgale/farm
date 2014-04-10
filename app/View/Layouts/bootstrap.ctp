@@ -5,8 +5,8 @@
 		<title>
 			<?php echo $title_for_layout; ?>
 		</title>
-		<script src="/farm/js/libs/jquery.js"></script>
-		<script src="/farm/js/farm.js"></script>
+		<script src="/js/libs/jquery.js"></script>
+		<script src="/js/farm.js"></script>
 	
 		<?php
 		echo $this->Html->meta('icon');
